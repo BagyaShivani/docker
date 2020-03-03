@@ -45,7 +45,7 @@ RUN apk add \
         php7-apcu
 #Copy Application Files
 RUN rm -rf /var/www/html/*
-ADD dockerize-php-sample /var/www/html
+ADD docker /var/www/html
 
 #open port 80
 EXPOSE 81
