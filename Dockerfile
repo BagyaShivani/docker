@@ -1,3 +1,25 @@
+FROM node:alpine
+
+#Update repository
+RUN apk update 
+
+#Install apache
+RUN apk add  apache2
+
+#Install PHP Modules
+RUN apk add \
+        php7-ftp \
+        php7-xdebug \
+        php7-mcrypt \
+        php7-mbstring \
+        php7-soap \
+        php7-gmp \
+        php7-pdo_odbc \
+        php7-dom \
+        php7-pdo \
+        php7-zip \
+        php7-mysqli \
+        php7-sqlite3 \
         php7-pdo_pgsql \
         php7-bcmath \
         php7-gd \
@@ -24,7 +46,9 @@
 #Copy Application Files
 RUN rm -rf /var/www/html/*
 ADD dockerize-php-sample /var/www/html
+
 #open port 80
 EXPOSE 81
+
 #Start Apache service
 CMD ["/usr/sbin/apache2ctl","-D","FOREGROUND"] 
