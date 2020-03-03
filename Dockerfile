@@ -1,20 +1,30 @@
-FROM ubuntu:16.04
-MAINTAINER Prasad Domala <prasad.domala@gmail.com>
-#updateRepository
-RUN apt-get install -y
-#installApache
-#RUN apt-get install -y apache2
-#install php modules
-RUN apt-get install -y php7.0 libapache2-mod-php7.0 php7.0-cli php7.0-common php7.0-mbstring php7.0-gd php7.0-intl php7.0-xml php7.0-mysql php7.0-mcrypt php7.0-zip
-#copy application files
+        php7-pdo_pgsql \
+        php7-bcmath \
+        php7-gd \
+        php7-odbc \
+        php7-pdo_mysql \
+        php7-pdo_sqlite \
+        php7-gettext \
+        php7-xml \
+        php7-xmlreader \
+        php7-xmlwriter \
+        php7-tokenizer \
+        php7-xmlrpc \
+        php7-bz2 \
+        php7-pdo_dblib \
+        php7-curl \
+        php7-ctype \
+        php7-session \
+        php7-redis \
+        php7-exif \
+        php7-intl \
+        php7-fileinfo \
+        php7-ldap \
+        php7-apcu
+#Copy Application Files
 RUN rm -rf /var/www/html/*
 ADD dockerize-php-sample /var/www/html
-#configure apache(optional)
-RUN chown -R www-data:www-data /var/www
-ENV APACHE_RUN_USER www-data
-ENV APACHE_RUN_GROUP www-data
-ENV APACHE_LOG_DIR /var/log/apache2
 #open port 80
-EXPOSE 80
-#start apache service
-CMD ["/usr/sbin/apache2ctl","-D","FOREGROUND"]
+EXPOSE 81
+#Start Apache service
+CMD ["/usr/sbin/apache2ctl","-D","FOREGROUND"] 
